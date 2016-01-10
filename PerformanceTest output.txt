@@ -1,0 +1,118 @@
+/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/bin/java -Didea.launcher.port=7534 "-Didea.launcher.bin.path=/Applications/IntelliJ IDEA 15.app/Contents/bin" -Dfile.encoding=UTF-8 -classpath "/Users/dnwiebe/Library/Application Support/IntelliJIdea15/Scala/lib/scala-plugin-runners.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/lib/ant-javafx.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/lib/dt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/lib/javafx-mx.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/lib/jconsole.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/lib/sa-jdi.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/lib/tools.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/jre/lib/deploy.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/jre/lib/htmlconverter.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/jre/lib/javaws.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/jre/lib/jfxswt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/jre/lib/management-agent.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/jre/lib/plugin.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/jre/lib/ext/cldrdata.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/jre/lib/ext/dnsns.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/jre/lib/ext/jfxrt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/jre/lib/ext/localedata.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/jre/lib/ext/nashorn.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/jre/lib/ext/sunec.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/jre/lib/ext/sunjce_provider.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/jre/lib/ext/sunpkcs11.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/jre/lib/ext/zipfs.jar:/Users/dnwiebe/Documents/Workspaces/CSE/Collections/target/scala-2.11/test-classes:/Users/dnwiebe/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.11.7.jar:/Users/dnwiebe/.ivy2/cache/org.scala-lang/scala-reflect/jars/scala-reflect-2.11.2.jar:/Users/dnwiebe/.ivy2/cache/org.scala-lang.modules/scala-xml_2.11/bundles/scala-xml_2.11-1.0.2.jar:/Users/dnwiebe/.ivy2/cache/org.scalatest/scalatest_2.11/bundles/scalatest_2.11-2.2.5.jar:/Applications/IntelliJ IDEA 15.app/Contents/lib/idea_rt.jar" com.intellij.rt.execution.application.AppMain org.jetbrains.plugins.scala.testingSupport.scalaTest.ScalaTestRunner -s cse.collections.PerformanceTest -showProgressMessages true -C org.jetbrains.plugins.scala.testingSupport.scalaTest.ScalaTestReporter
+Testing started at 5:06 PM ...
+
+Results for Vector
+  Head: 1119000ns
+  Tail: 1057000ns
+  Last: 894000ns
+  Size: 811000ns
+  Apply: 909000ns
+  Prepend: 935000ns
+  Append: 887000ns
+
+Results for NumericRange
+  Head: 80ns
+  Tail: 150ns
+  Last: 100ns
+  Size: 100ns
+  Apply: 40ns
+  Prepend: 140ns
+  Append: 130ns
+
+Results for String
+  Head: 100ns
+  Tail: 70ns
+  Last: 100ns
+  Size: 90ns
+  Apply: 130ns
+  Prepend: 130ns
+  Append: 120ns
+
+Results for Range
+  Head: 100ns
+  Tail: 90ns
+  Last: 110ns
+  Size: 110ns
+  Apply: 110ns
+  Prepend: 110ns
+  Append: 100ns
+
+Results for List
+  Head: 60ns
+  Tail: 110ns
+  Last: 90ns
+  Size: 90ns
+  Apply: 100ns
+  Prepend: 120ns
+  Append: 120ns
+
+Results for Stream
+  Head: 70ns
+  Tail: 60ns
+  Last: 50ns
+  Size: 70ns
+  Apply: 0ns
+  Prepend: 0ns
+  Append: 0ns
+
+Results for Queue
+  Head: 70ns
+  Tail: 60ns
+  Last: 60ns
+  Size: 50ns
+  Apply: 140ns
+  Prepend: 20ns
+  Append: 130ns
+
+Results for Stack
+  Head: 80ns
+  Tail: 90ns
+  Last: 50ns
+  Size: 70ns
+  Apply: 80ns
+  Prepend: 60ns
+  Append: 60ns
+
+Results for HashSet
+  Head: 60ns
+  Tail: 50ns
+  Last: 50ns
+  Size: 10ns
+
+Results for TreeSet
+  Head: 60ns
+  Tail: 60ns
+  Last: 70ns
+  Size: 10ns
+
+Results for BitSet
+  Head: 70ns
+  Tail: 40ns
+  Last: 60ns
+  Size: 60ns
+
+Results for ListSet
+  Head: 80ns
+  Tail: 70ns
+  Last: 70ns
+  Size: 10ns
+
+Results for HashMap
+  Head: 230ns
+  Tail: 80ns
+  Last: 60ns
+  Size: 50ns
+
+Results for TreeMap
+  Head: 70ns
+  Tail: 60ns
+  Last: 50ns
+  Size: 10ns
+
+Results for ListMap
+  Head: 60ns
+  Tail: 50ns
+  Last: 50ns
+  Size: 110ns
+
+Process finished with exit code 0

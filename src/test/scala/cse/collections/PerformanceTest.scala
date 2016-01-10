@@ -86,6 +86,7 @@ class PerformanceTest extends path.FunSpec {
   import PerformanceTest._
 
   describe ("Performance testing") {
+    pending
     collections.foreach {pair =>
       val (name, collection, iterations) = pair
       val results = if (classOf[Seq[_]].isAssignableFrom (collection.getClass)) {
