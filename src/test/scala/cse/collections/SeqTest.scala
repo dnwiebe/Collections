@@ -129,10 +129,6 @@ class SeqTest extends path.FunSpec {
         assert (FIRST.diff (FIRST) === Nil)
       }
 
-      it ("the slice method extracts an interval of elements" ) {
-        assert ((FIRST ::: SECOND).slice (2, 4) === List ("three", "four"))
-      }
-
       it ("the distinct method eliminates duplicates") {
         val withDups = ELEMENT :: FIRST ::: FIRST ::: SECOND ::: FIRST ::: SECOND
         assert (withDups === List ("six", /**/ "one", "two", "three", /**/ "one", "two", "three",
@@ -140,52 +136,15 @@ class SeqTest extends path.FunSpec {
         assert (withDups.distinct === List ("six", /**/ "one", "two", "three", /**/ "four", "five"))
       }
 
-      it ("the drop method eliminates the first few items") {
-        assert ((FIRST ::: SECOND).drop (2) === List ("three", "four", "five"))
-      }
-
-      it ("the dropRight method eliminates the last few items") {
-        assert ((FIRST ::: SECOND).dropRight (3) === List ("one", "two"))
-      }
-
-      it ("the take method preserves the first few items") {
-        assert ((FIRST ::: SECOND).take (2) === List ("one", "two"))
-      }
-
-      it ("the takeRight method preserves the last few items") {
-        assert ((FIRST ::: SECOND).takeRight (3) === List ("three", "four", "five"))
-      }
-
       it ("the endsWith method checks the last few elements") {
         assert ((FIRST ::: SECOND).endsWith (List ("three", "four", "five")) === true)
         assert ((FIRST ::: SECOND).endsWith (List ("three", "four")) === false)
-      }
-
-      it ("the grouped method partitions into fixed-size pieces, except for the last piece") {
-        assert ((FIRST ::: SECOND).grouped (2).toList === List (
-          Seq ("one", "two"),
-          Seq ("three", "four"),
-          Seq ("five")
-        ))
-      }
-
-      it ("the head method returns the first item in the list") {
-        assert (FIRST.head === "one")
-        assert (SECOND.head === "four")
-        // This would be a runtime error: Nil.head
       }
 
       it ("the headOption method is just like head, except it returns an Option") {
         assert (FIRST.headOption === Some ("one"))
         assert (SECOND.headOption === Some ("four"))
         assert (Nil.headOption === None)
-      }
-
-      it ("the tail method returns all items but the first") {
-        assert (FIRST.tail === List ("two", "three"))
-        assert (SECOND.tail === List ("five"))
-        assert (SECOND.tail.tail === Nil)
-        // This would be an error: Nil.tail
       }
 
       it ("the tails method returns a sequence of diminishing tails") {
@@ -257,11 +216,6 @@ class SeqTest extends path.FunSpec {
         assert ((FIRST ::: SECOND).intersect (List ("three", "four", "seven")) === List ("three", "four"))
       }
 
-      it ("the isEmpty method is a shortcut for checking that size == 0") {
-        assert (FIRST.isEmpty === false)
-        assert (Nil.isEmpty === true)
-      }
-
       it ("the nonEmpty method does the opposite") {
         assert (FIRST.nonEmpty === true)
         assert (Nil.nonEmpty === false)
@@ -307,19 +261,6 @@ class SeqTest extends path.FunSpec {
         assert (FIRST.sameElements (FIRST.reverse) === false)
       }
 
-      it ("the sliding method takes snapshots of a sliding window") {
-        assert ((FIRST ::: SECOND).sliding (3).toList === List (
-          Seq ("one", "two", "three"),
-          Seq ("two", "three", "four"),
-          Seq ("three", "four", "five")
-        ))
-
-        assert ((FIRST ::: SECOND).sliding (3, 2).toList === List (
-          Seq ("one", "two", "three"),
-          Seq ("three", "four", "five")
-        ))
-      }
-
       it ("the sorted method sorts the collection according to its natural ordering") {
         assert (FIRST.sorted === List ("one", "three", "two"))
       }
@@ -360,17 +301,6 @@ class SeqTest extends path.FunSpec {
         assert (FIRST.union (SECOND) === (FIRST ::: SECOND))
       }
 
-      it ("the zip method combines two collections into a collection of pairs") {
-        assert (FIRST.zip (SECOND) === List (
-          ("one", "four"),
-          ("two", "five")
-        ))
-      }
-
-      it ("the zipWithIndex method zips a collection with its indices") {
-        assert (FIRST.zipWithIndex === List (("one", 0), ("two", 1), ("three", 2)))
-      }
-
       it ("the unzip method does the opposite") {
         assert (FIRST.zip (SECOND).unzip === (
           List ("one", "two"),
@@ -378,6 +308,30 @@ class SeqTest extends path.FunSpec {
         ))
       }
     }
+
+    /*
+    def foreach[U](f : scala.Function1[A, U]) : scala.Unit = { /* compiled code */ }
+    override def forall(p : scala.Function1[A, scala.Boolean]) : scala.Boolean = { /* compiled code */ }
+    override def exists(p : scala.Function1[A, scala.Boolean]) : scala.Boolean = { /* compiled code */ }
+    override def find(p : scala.Function1[A, scala.Boolean]) : scala.Option[A] = { /* compiled code */ }
+    override def isEmpty : scala.Boolean = { /* compiled code */ }
+    override def foldRight[B](z : B)(op : scala.Function2[A, B, B]) : B = { /* compiled code */ }
+    override def reduceRight[B >: A](op : scala.Function2[A, B, B]) : B = { /* compiled code */ }
+    override def head : A = { /* compiled code */ }
+    override def slice(from : scala.Int, until : scala.Int) : Repr = { /* compiled code */ }
+    override def take(n : scala.Int) : Repr = { /* compiled code */ }
+    override def drop(n : scala.Int) : Repr = { /* compiled code */ }
+    override def takeWhile(p : scala.Function1[A, scala.Boolean]) : Repr = { /* compiled code */ }
+    def grouped(size : scala.Int) : scala.collection.Iterator[Repr] = { /* compiled code */ }
+    def sliding(size : scala.Int) : scala.collection.Iterator[Repr] = { /* compiled code */ }
+    def sliding(size : scala.Int, step : scala.Int) : scala.collection.Iterator[Repr] = { /* compiled code */ }
+    def takeRight(n : scala.Int) : Repr = { /* compiled code */ }
+    def dropRight(n : scala.Int) : Repr = { /* compiled code */ }
+    def zip[A1 >: A, B, That](that : scala.collection.GenIterable[B])(implicit bf : scala.collection.generic.CanBuildFrom[Repr, scala.Tuple2[A1, B], That]) : That = { /* compiled code */ }
+    def zipAll[B, A1 >: A, That](that : scala.collection.GenIterable[B], thisElem : A1, thatElem : B)(implicit bf : scala.collection.generic.CanBuildFrom[Repr, scala.Tuple2[A1, B], That]) : That = { /* compiled code */ }
+    def zipWithIndex[A1 >: A, That](implicit bf : scala.collection.generic.CanBuildFrom[Repr, scala.Tuple2[A1, scala.Int], That]) : That = { /* compiled code */ }
+    def sameElements[B >: A](that : scala.collection.GenIterable[B]) : scala.Boolean = { /* compiled code */ }
+    */
 
     describe ("and concentrating on functional methods from Seq") {
 
@@ -403,13 +357,6 @@ class SeqTest extends path.FunSpec {
         assert (FIRST.count (predicate) === 2)
       }
 
-      it ("the exists method is like count, but returns a Boolean") {
-        val predicate = {s: String => s.startsWith ("o")}
-
-        assert (FIRST.exists (predicate) === true)
-        assert (SECOND.exists (predicate) === false)
-      }
-
       it ("the filter method is like count and exists, but returns the matching elements") {
         val predicate = {s: String => s.startsWith ("t")}
 
@@ -422,20 +369,6 @@ class SeqTest extends path.FunSpec {
 
         assert (FIRST.filterNot (predicate) === List ("one"))
         assert (SECOND.filterNot (predicate) === List ("four", "five"))
-      }
-
-      it ("the find method stops at the first match, and returns an Option") {
-        val predicate = {s: String => s.startsWith ("t")}
-
-        assert (FIRST.find (predicate) === Some ("two"))
-        assert (SECOND.find (predicate) === None)
-      }
-
-      it ("the forall method tells whether a predicate holds for every member of the collection") {
-        val predicate = {s: String => s.startsWith ("f")}
-
-        assert (FIRST.forall (predicate) === false)
-        assert (SECOND.forall (predicate) === true)
       }
 
       it ("the foreach method applies a side-effect lambda to each item. Avoid if possible") {
