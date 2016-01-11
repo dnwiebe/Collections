@@ -12,13 +12,13 @@ import scala.collection.immutable._
 object PerformanceTest {
 
   trait Operation {
-    def apply[C <: IterableTest[_]] (collection: C, iterations: Int): Long = {
+    def apply[C <: Iterable[_]] (collection: C, iterations: Int): Long = {
       (1 to iterations).foldLeft (0L) {(soFar, _) => soFar + once (collection)} / iterations
     }
 
-    protected def op[C <: IterableTest[_]] (collection: C): () => Unit
+    protected def op[C <: Iterable[_]] (collection: C): () => Unit
 
-    private def once[C <: IterableTest[_]] (collection: C): Long = {
+    private def once[C <: Iterable[_]] (collection: C): Long = {
       val start = System.nanoTime()
       op (collection)
       System.nanoTime () - start
@@ -26,35 +26,35 @@ object PerformanceTest {
   }
 
   class Head extends Operation {
-    override protected def op[C <: IterableTest[_]] (collection: C) = () => collection.head
+    override protected def op[C <: Iterable[_]] (collection: C) = () => collection.head
   }
 
   class Tail extends Operation {
-    override protected def op[C <: IterableTest[_]] (collection: C) = () => collection.tail
+    override protected def op[C <: Iterable[_]] (collection: C) = () => collection.tail
   }
 
   class Last extends Operation {
-    override protected def op[C <: IterableTest[_]] (collection: C) = () => collection.last
+    override protected def op[C <: Iterable[_]] (collection: C) = () => collection.last
   }
 
   class Size extends Operation {
-    override protected def op[C <: IterableTest[_]] (collection: C) = () => collection.size
+    override protected def op[C <: Iterable[_]] (collection: C) = () => collection.size
   }
 
   class Apply extends Operation {
-    override protected def op[C <: IterableTest[_]] (collection: C) = () => {
+    override protected def op[C <: Iterable[_]] (collection: C) = () => {
       collection.asInstanceOf[Seq[_]] (collection.size / 2)
     }
   }
 
   class Prepend extends Operation {
-    override protected def op[C <: IterableTest[_]] (collection: C) = () => {
+    override protected def op[C <: Iterable[_]] (collection: C) = () => {
       collection.asInstanceOf[Seq[_]].+: (collection.head)
     }
   }
 
   class Append extends Operation {
-    override protected def op[C <: IterableTest[_]] (collection: C) = () => {
+    override protected def op[C <: Iterable[_]] (collection: C) = () => {
       collection.asInstanceOf[Seq[_]].:+ (collection.head)
     }
   }
@@ -62,7 +62,7 @@ object PerformanceTest {
   val iterableOps = List (new Head, new Tail, new Last, new Size)
   val seqOps = iterableOps ++ List (new Apply, new Prepend, new Append)
   val SIZE = 100000
-  val collections: List[(String, IterableTest[_], Int)] = List (
+  val collections: List[(String, Iterable[_], Int)] = List (
     ("Vector", Vector () ++ (1 to SIZE), 1),
     ("NumericRange", new NumericRange.Inclusive[Int] (1, SIZE, 1), 100),
     ("String", (1 to SIZE).foldLeft ("") {(soFar, _) => soFar + "x"}, 100),
@@ -110,7 +110,7 @@ class PerformanceTest extends path.FunSpec {
     }
   }
 
-  private def getIterableResults (collection: IterableTest[_], iterations: Int): List[(Operation, Long)] = {
+  private def getIterableResults (collection: Iterable[_], iterations: Int): List[(Operation, Long)] = {
     iterableOps.map {op =>
       (op, op.apply (collection, iterations))
     }

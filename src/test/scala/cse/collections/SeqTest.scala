@@ -47,10 +47,6 @@ class SeqTest extends path.FunSpec {
         assert (FIRST :+ ELEMENT === List ("one", "two", "three", "six"))
       }
 
-      it ("the /: and :\\ operators are not worth demonstrating: use folds instead") {
-        assert (true)
-      }
-
       describe ("that are unique to Lists") {
 
         it ("the :: operator is like +:, but unique to Lists") {
@@ -255,12 +251,6 @@ class SeqTest extends path.FunSpec {
         // This would cause a compile-time error: FIRST.product
       }
 
-      it ("the sameElements function is very much like business equals") {
-        assert (FIRST.sameElements (FIRST) === true)
-        assert (FIRST.sameElements (SECOND) === false)
-        assert (FIRST.sameElements (FIRST.reverse) === false)
-      }
-
       it ("the sorted method sorts the collection according to its natural ordering") {
         assert (FIRST.sorted === List ("one", "three", "two"))
       }
@@ -309,29 +299,9 @@ class SeqTest extends path.FunSpec {
       }
     }
 
-    /*
-    def foreach[U](f : scala.Function1[A, U]) : scala.Unit = { /* compiled code */ }
-    override def forall(p : scala.Function1[A, scala.Boolean]) : scala.Boolean = { /* compiled code */ }
-    override def exists(p : scala.Function1[A, scala.Boolean]) : scala.Boolean = { /* compiled code */ }
-    override def find(p : scala.Function1[A, scala.Boolean]) : scala.Option[A] = { /* compiled code */ }
-    override def isEmpty : scala.Boolean = { /* compiled code */ }
-    override def foldRight[B](z : B)(op : scala.Function2[A, B, B]) : B = { /* compiled code */ }
-    override def reduceRight[B >: A](op : scala.Function2[A, B, B]) : B = { /* compiled code */ }
-    override def head : A = { /* compiled code */ }
-    override def slice(from : scala.Int, until : scala.Int) : Repr = { /* compiled code */ }
-    override def take(n : scala.Int) : Repr = { /* compiled code */ }
-    override def drop(n : scala.Int) : Repr = { /* compiled code */ }
-    override def takeWhile(p : scala.Function1[A, scala.Boolean]) : Repr = { /* compiled code */ }
-    def grouped(size : scala.Int) : scala.collection.Iterator[Repr] = { /* compiled code */ }
-    def sliding(size : scala.Int) : scala.collection.Iterator[Repr] = { /* compiled code */ }
-    def sliding(size : scala.Int, step : scala.Int) : scala.collection.Iterator[Repr] = { /* compiled code */ }
-    def takeRight(n : scala.Int) : Repr = { /* compiled code */ }
-    def dropRight(n : scala.Int) : Repr = { /* compiled code */ }
-    def zip[A1 >: A, B, That](that : scala.collection.GenIterable[B])(implicit bf : scala.collection.generic.CanBuildFrom[Repr, scala.Tuple2[A1, B], That]) : That = { /* compiled code */ }
-    def zipAll[B, A1 >: A, That](that : scala.collection.GenIterable[B], thisElem : A1, thatElem : B)(implicit bf : scala.collection.generic.CanBuildFrom[Repr, scala.Tuple2[A1, B], That]) : That = { /* compiled code */ }
-    def zipWithIndex[A1 >: A, That](implicit bf : scala.collection.generic.CanBuildFrom[Repr, scala.Tuple2[A1, scala.Int], That]) : That = { /* compiled code */ }
-    def sameElements[B >: A](that : scala.collection.GenIterable[B]) : scala.Boolean = { /* compiled code */ }
-    */
+    //================================================================//
+    //================================================================//
+    //================================================================//
 
     describe ("and concentrating on functional methods from Seq") {
 

@@ -6,11 +6,9 @@ import org.scalatest.path
   * Created by dnwiebe on 1/10/16.
   */
 class IterableTest extends path.FunSpec {
-  describe ("Given two Iterables and an element") {
+  describe ("Given two Iterables") {
     val FIRST = List ("one", "two", "three")
     val SECOND = List ("four", "five")
-    val ELEMENT = "six"
-    val x: Iterable = Nil
 
     describe ("and concentrating on standard non-functional methods") {
 
@@ -53,12 +51,6 @@ class IterableTest extends path.FunSpec {
         assert (Nil.isEmpty === true)
       }
 
-      it ("the sameElements function is very much like business equals") {
-        assert (FIRST.sameElements (FIRST) === true)
-        assert (FIRST.sameElements (SECOND) === false)
-        assert (FIRST.sameElements (FIRST.reverse) === false)
-      }
-
       it ("the sliding method takes snapshots of a sliding window") {
         assert ((FIRST ::: SECOND).sliding (3).toList === List (
           Seq ("one", "two", "three"),
@@ -84,6 +76,10 @@ class IterableTest extends path.FunSpec {
       }
     }
 
+    //================================================================//
+    //================================================================//
+    //================================================================//
+
     describe ("and concentrating on functional methods from Iterable") {
 
       it ("the exists method is like count, but returns a Boolean") {
@@ -105,10 +101,6 @@ class IterableTest extends path.FunSpec {
 
         assert (FIRST.forall (predicate) === false)
         assert (SECOND.forall (predicate) === true)
-      }
-
-      val partialFunction: PartialFunction[String, String] = {
-        case e if e.startsWith ("t") => e + " starts with T"
       }
     }
   }
